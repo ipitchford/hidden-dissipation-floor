@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite this unrefereed candidate using these metadata."
+type: article
+title: "An architecture-independent dissipation floor for alternating-renewal observations"
+authors:
+  - name: Anonymous
+version: "1.1.0-candidate"
+date-released: 2026-10-03
+doi: 10.5281/zenodo.23118474
+url: https://github.com/ipitchford/hidden-dissipation-floor
+license: CC0-1.0

@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "1.0",
+  "contributionMap": [
+    {
+      "unit": "statement",
+      "claim": "Zero-cost closure and three-way classification for finite-realizable alternating renewal",
+      "paperLocation": "Theorem thm:dichotomy",
+      "searches": [
+        {
+          "date": "2026-10-03",
+          "query": "alternating renewal reversible hyperexponential zero entropy production closure",
+          "corpus": "Live web discovery and arXiv/publisher primary text"
+        }
+      ],
+      "closestPriorWork": "Skinner-Dunkel equilibrium spectral restriction; Aznagulov exact-law zero-limit question",
+      "verdict": "new-in-bounded-search"
+    },
+    {
+      "unit": "method",
+      "claim": "Path comparison to additive reversibilization and observable information projection",
+      "paperLocation": "Lemmas lem:path, lem:projection",
+      "searches": [
+        {
+          "date": "2026-10-03",
+          "query": "entropy production additive reversibilization persistence covariance",
+          "corpus": "Live web discovery and arXiv/publisher primary text"
+        }
+      ],
+      "closestPriorWork": "Additive reversibilization known; spectral restriction Skinner-Dunkel; bounded-test separation here",
+      "verdict": "partially-known-cited"
+    },
+    {
+      "unit": "object",
+      "claim": "q=1/20 ring target and fixed-window certificate",
+      "paperLocation": "Section sec:target and cor:fixed",
+      "searches": [
+        {
+          "date": "2026-10-03",
+          "query": "Thermodynamic realizability of hidden Markov processes Aznagulov",
+          "corpus": "Live web discovery and arXiv/publisher primary text"
+        }
+      ],
+      "closestPriorWork": "Target inherited from arXiv:2609.14623v1; fixed-window extension from supplied audit",
+      "verdict": "partially-known-cited"
+    },
+    {
+      "unit": "statement",
+      "claim": "Deterministic error-box certificate and high-variance example",
+      "paperLocation": "cor:robust; sec:beyondvariance",
+      "searches": [
+        {
+          "date": "2026-10-03",
+          "query": "entropy production waiting time complete monotonicity",
+          "corpus": "Live web discovery and arXiv/publisher primary text"
+        }
+      ],
+      "closestPriorWork": "Classical equilibrium mixtures and variance obstruction; elementary consequences of present bound/classification",
+      "verdict": "new-in-bounded-search"
+    }
+  ],
+  "sourcesReadInFull": [
+    {
+      "citation": "Skinner and Dunkel (2021)",
+      "usedFor": "Inherited equilibrium spectral restriction",
+      "readWhat": "Waiting-time inference and Supplement II S6-S10 / HTML A6-A10",
+      "evidenceLocator": "https://arxiv.org/html/2105.08681v2",
+      "date": "2026-10-03"
+    },
+    {
+      "citation": "Ehrich (2021)",
+      "usedFor": "Hidden-dimension uncertainty antecedent",
+      "readWhat": "Sections 4-5 including known count and growing-network question",
+      "evidenceLocator": "https://arxiv.org/html/2105.08803v2",
+      "date": "2026-10-03"
+    },
+    {
+      "citation": "Nitzan, Ghosal and Bisker (2023); read preprint v1",
+      "usedFor": "Hypothesized-topology optimization comparator",
+      "readWhat": "Preprint III.A, III.D, conclusions; published bibliographic record separately",
+      "evidenceLocator": "https://arxiv.org/pdf/2212.01783",
+      "date": "2026-10-03"
+    },
+    {
+      "citation": "Aznagulov (2026), 2609.14623v1",
+      "usedFor": "Exact target and zero-limit question",
+      "readWhat": "Definitions, Section 6, Section 8.5; not an endorsement of compactification claims",
+      "evidenceLocator": "https://arxiv.org/html/2609.14623v1",
+      "date": "2026-10-03"
+    },
+    {
+      "citation": "Aznagulov (2026), 2609.37205v1",
+      "usedFor": "Reversibilization antecedent",
+      "readWhat": "Additive comparison section and stationary/exitrate assumptions",
+      "evidenceLocator": "https://arxiv.org/html/2609.37205v1",
+      "date": "2026-10-03"
+    }
+  ],
+  "limitationTriage": [
+    {
+      "limitation": "Exact positive optimum and finite attainment",
+      "closingQuestion": "Can the existing ring or a known optimizer theorem close the gap?",
+      "triedOrSearched": "Compared ring upper bound to certificates and source's separate attainment question",
+      "estimatedCost": "unknown; substantive separate research or external review",
+      "cheap": false,
+      "decision": "OPEN",
+      "reasonOpen": "No sharpness or attainment argument; a larger certificate is not physical optimization.",
+      "whyNotClosedNow": ""
+    },
+    {
+      "limitation": "Finite-data confidence and window selection",
+      "closingQuestion": "Does a deterministic error box establish simultaneous coverage?",
+      "triedOrSearched": "Derived deterministic corollary; distinguished coverage, temporal dependence and selection",
+      "estimatedCost": "unknown; substantive separate research or external review",
+      "cheap": false,
+      "decision": "OPEN",
+      "reasonOpen": "Needs a statistical sampling model and dependence/selection-aware confidence method.",
+      "whyNotClosedNow": ""
+    },
+    {
+      "limitation": "Beyond low-variance examples",
+      "closingQuestion": "Can a slow reversible component raise variance while retaining a negative residue?",
+      "triedOrSearched": "Constructed and exactly checked a four-state mixture",
+      "estimatedCost": "bounded extension within current revision",
+      "cheap": true,
+      "decision": "CLOSED",
+      "reasonOpen": "",
+      "whyNotClosedNow": ""
+    },
+    {
+      "limitation": "Stronger concrete lower bound",
+      "closingQuestion": "Can deterministic horizons reuse the proved path inequality?",
+      "triedOrSearched": "Integrated supplied audit corollary and independently coded exact enclosure",
+      "estimatedCost": "bounded extension within current revision",
+      "cheap": true,
+      "decision": "CLOSED",
+      "reasonOpen": "",
+      "whyNotClosedNow": ""
+    },
+    {
+      "limitation": "Nonrenewal/odd-variable/nonstationary systems",
+      "closingQuestion": "Do current conditional independence and reversal arguments extend automatically?",
+      "triedOrSearched": "Checked where renewal, stationarity and even-variable reversal enter",
+      "estimatedCost": "unknown; substantive separate research or external review",
+      "cheap": false,
+      "decision": "OPEN",
+      "reasonOpen": "Different path constraints or reversal operations; not asserted by this proof.",
+      "whyNotClosedNow": ""
+    },
+    {
+      "limitation": "Formal and external assurance, worldwide priority",
+      "closingQuestion": "Can internal code or bounded searching establish these?",
+      "triedOrSearched": "Targeted internal proof check and primary-source comparison",
+      "estimatedCost": "unknown; substantive separate research or external review",
+      "cheap": false,
+      "decision": "OPEN",
+      "reasonOpen": "Neither formalization nor authenticated unaffiliated review has been supplied; search cannot establish worldwide priority.",
+      "whyNotClosedNow": ""
+    }
+  ],
+  "extensionScout": {
+    "by": "Codex publication agent with targeted coordinated mathematical check",
+    "date": "2026-10-03",
+    "proposals": [
+      "Fixed-window bound",
+      "High-variance nonhyperexponential example",
+      "Simultaneous deterministic uncertainty box"
+    ],
+    "actions": [
+      "All three implemented and claim limits preserved"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "version": "1.1.0-candidate",
+  "status": "unrefereed-candidate",
+  "claims": [
+    {
+      "id": "HD-ZERO",
+      "statement": "Zero-cost classification under finite-realizable stationary ergodic two-label alternating renewal",
+      "evidence": "Written analytic proof; internal checking",
+      "formalVerification": false
+    },
+    {
+      "id": "HD-FLOOR",
+      "statement": "V_infinity(P_1/20)>0.017568198744",
+      "evidence": "Written path/projection argument plus exact rational interval enclosure",
+      "notClaimed": "Certificate optimality or physical optimum"
+    },
+    {
+      "id": "HD-VARIANCE",
+      "statement": "Four-state nonhyperexponential B dwell with CV squared 324697/112903>1",
+      "evidence": "Written residue argument plus exact moments and stationary realization"
+    },
+    {
+      "id": "HD-ROBUST",
+      "statement": "Positive conservative floor under a simultaneous error box with positive deficit",
+      "evidence": "Algebraic corollary and exact substitution",
+      "notClaimed": "Statistical coverage or sample complexity"
+    }
+  ],
+  "assuranceBoundary": "Internal checks and supplied model review do not establish external peer review, unaffiliated reproduction, formal proof, exhaustive novelty or actual REF rating."
+}

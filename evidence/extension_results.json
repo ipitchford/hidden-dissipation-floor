@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "fixed_window_enclosure": [
+    "0.017568198744",
+    "0.017568198745"
+  ],
+  "interval_width": "1.094885231830944221778460886533079486038E-42",
+  "high_variance_cv_squared": "324697/112903",
+  "uncertainty_halfwidth": "1/10000",
+  "robust_floor_exact": "282199575871088353324775601536877/486244237261815753125000000000000000",
+  "robust_floor_decimal_diagnostic": "0.0005803659030701055225553350352115952857440",
+  "semantic_negative_controls": 6,
+  "scope": "Exact arithmetic; analytic proof and source comparison remain separate obligations."
+}

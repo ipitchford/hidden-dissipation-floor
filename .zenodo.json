@@ -1,0 +1,61 @@
+{
+  "title": "An architecture-independent dissipation floor for alternating-renewal observations",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "creators": [
+    {
+      "name": "Anonymous"
+    }
+  ],
+  "version": "1.1.0-candidate",
+  "publication_date": "2026-10-03",
+  "access_right": "open",
+  "license": "cc-zero",
+  "keywords": [
+    "entropy production",
+    "hidden Markov processes",
+    "alternating renewal",
+    "stochastic thermodynamics",
+    "hyperexponential distributions",
+    "exact certificates"
+  ],
+  "description": "<p>Unrefereed mathematical candidate. For finite-realizable stationary ergodic two-label alternating-renewal laws, zero unrestricted finite-architecture dissipation cost is equivalent to hyperexponential complete dwell laws and a finite reversible exact realization. The inherited equilibrium spectral restriction is explicitly credited; the additional closure conclusion allows unbounded hidden dimension and rates.</p><p>A bounded-persistence certificate yields V_infinity(P_1/20) &gt; 0.017568198744. The fixed-window extension was suggested by the supplied model-review audit. Version 1.1 also adds an exact high-variance example, a deterministic observational-error corollary and a one-way-edge software repair. The positive optimum, its attainment and statistical confidence construction remain unresolved. Ordinary even-variable reversal, stationary finite CTMCs and deterministic observation are essential. Internal replay and model review are not external peer review, formal verification or exhaustive priority assurance. Original prose/data CC0-1.0; original code MIT.</p>",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/ipitchford/hidden-dissipation-floor",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.48550/arXiv.2609.14623",
+      "relation": "cites",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1103/PhysRevLett.127.198101",
+      "relation": "cites",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1088/1742-5468/ac150e",
+      "relation": "cites",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1103/PhysRevResearch.5.043251",
+      "relation": "cites",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.1073/pnas.0804641105",
+      "relation": "cites",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.48550/arXiv.2609.37205",
+      "relation": "cites",
+      "scheme": "doi"
+    }
+  ],
+  "doi": "10.5281/zenodo.23118474"
+}

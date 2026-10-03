@@ -1,0 +1,490 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=27mm]{geometry}
+\usepackage{booktabs,enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Architecture-independent dissipation}
+\fancyhead[R]{\small Research candidate v1.1}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\R}{\mathbb R}
+\newcommand{\sig}{\sigma}
+\title{An architecture-independent dissipation floor\newline for alternating-renewal observations}
+\author{Anonymous}
+\date{3 October 2026\\\small Evidence Press research candidate, version 1.1\\\small\url{https://doi.org/10.5281/zenodo.23118474}}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+Can hidden Markov architectures of increasing size reproduce a fixed observed process with arbitrarily small dissipation? For finite-realizable stationary two-label alternating-renewal laws, we prove that zero all-dimension cost is equivalent to both complete dwell laws being finite positive mixtures of exponential densities, and to the existence of a finite reversible exact realization. The necessity extends the established equilibrium spectral restriction to vanishing-dissipation sequences of unbounded dimension and unrestricted rates. Comparing a chain with its additive reversibilization converts negative correlation between bounded past and future persistence tests into a dimension-independent dissipation certificate. For a specified three-state-ring observation at $q=1/20$, an exact-arithmetic fixed-window certificate gives $V_\infty>0.017568198744$ in target time units, with Boltzmann's constant one. We also give an example beyond the elementary variance obstruction and a certificate stable under bounded observational errors. The exact positive optimum, its finite-dimensional attainment, and statistical confidence-set construction remain unresolved.
+\end{abstract}
+
+\section{The question and its resolution}
+Let $Q$ be a finite irreducible continuous-time Markov generator in row convention, $\pi Q=0$, and let $h$ assign a visible label to every microscopic state. The chain starts in its stationary law. Write
+\begin{equation}\label{eq:epr}
+ F_{ij}=\pi_iQ_{ij},\qquad
+ \sig(Q)=\sum_{i<j}(F_{ij}-F_{ji})\log\frac{F_{ij}}{F_{ji}}.
+\end{equation}
+A missing reverse edge carrying positive forward flux gives infinite cost. Zero flux in both directions gives zero contribution. All logarithms are natural. Ordinary time reversal is used; microscopic variables are even under time reversal.
+
+For a stationary observed path law $P$, define
+\begin{equation}\label{eq:V}
+ V_n(P)=\inf\{\sig(Q): |Q|\leq n,\ P_{Q,h}=P\},
+ \qquad V_\infty(P)=\inf_nV_n(P).
+\end{equation}
+Equality $P_{Q,h}=P$ means equality of the entire stationary observed path law, not merely a collection of moments. The target and these conventions are those of Aznagulov \cite{aznagulov}. Its unpriced zero-limit question is resolved here without using its fixed-dimension compactification claims.
+
+\begin{theorem}[Main result]\label{thm:main}
+For the alternating-renewal law $P_q$ defined in Section~\ref{sec:target}, and every $0<q<1$,
+\begin{equation}\label{eq:allq}
+0<\frac{2(1-q)^4}{3(3q+5)^2(2q^2+3q+3)^2}
+\leq V_\infty(P_q)\leq(1-q)\log(1/q).
+\end{equation}
+At $q=1/20$ the following stronger rational certificate holds:
+\begin{equation}\label{eq:mainconstant}
+V_\infty(P_{1/20})\geq
+\frac{182774933998705388800}{22434692075028399713067}
+>\frac1{125}.
+\end{equation}
+Every inequality is valid over the unrestricted finite deterministic-observation class, including realizations with multiple microscopic states under either visible label.
+\end{theorem}
+
+The lower bounds are not asserted to be sharp. In particular, this theorem decides whether the all-dimension infimum is zero, but does not distinguish a positive minimum attained at finite dimension from a positive infimum approached only at growing dimension.
+
+The central structural result is Theorem~\ref{thm:dichotomy}: for every finite-realizable stationary ergodic two-label alternating-renewal law,
+\[
+\begin{aligned}
+V_\infty(P)=0
+&\quad\Longleftrightarrow\quad\text{both dwell laws are hyperexponential}\\
+&\quad\Longleftrightarrow\quad\text{a finite reversible exact realization exists}.
+\end{aligned}
+\]
+Here hyperexponential means a finite positive mixture of exponential densities, not an arbitrary phase-type law. The equilibrium mixture restriction is classical; the extra implication is that a sequence of exact realizations with vanishing dissipation must enter this class even without a common bound on dimension or rates. Section~\ref{sec:beyondvariance} illustrates a case not detected by the elementary dwell-variance test.
+
+\section{The target law and an exact finite competitor}\label{sec:target}
+For $q>0$ put
+\[
+ s=1+q,\qquad c=1+q+q^2,\qquad
+ D_q(z)=z^2+2sz+c.
+\]
+The complete $A$ visits are exponential with rate $s$. The complete $B$ visits have Laplace transform
+\begin{equation}\label{eq:f}
+ \widehat f_q(z)=\frac{(2q/s)z+c}{D_q(z)}.
+\end{equation}
+Successive visits are independent and alternate between $A$ and $B$. The stationary version of this renewal process defines $P_q$.
+
+These specifications have the exact three-state realization
+\begin{equation}\label{eq:ring}
+ Q_q=\begin{pmatrix}-s&1&q\\q&-s&1\\1&q&-s\end{pmatrix},
+ \qquad \pi=(1/3,1/3,1/3),
+ \qquad h(0)=A,\quad h(1)=h(2)=B.
+\end{equation}
+For a complete $B$ visit the entrance distribution, killed generator, and exit rates are
+\[
+ \alpha=(1/s,q/s),\qquad
+ T=\begin{pmatrix}-s&1\\q&-s\end{pmatrix},\qquad
+ t=(q,1)^{\mathsf T}.
+\]
+Direct inversion gives $\alpha(zI-T)^{-1}t=\widehat f_q(z)$. The single $A$ state resets the process on every return; the holding time in $A$ is independent of its exit destination. Thus the construction realizes the complete alternating-renewal law, not just its marginal waiting-time distributions.
+
+Differentiating \eqref{eq:f} gives
+\begin{equation}\label{eq:means}
+ \E T_A=1/s,\qquad \E T_B=2/s,\qquad \E T_B^2=6/c.
+\end{equation}
+The stationary $B$ probability is $p=2/3$ and the rate of entrances into each block is $r=s/3$. Each of the three unoriented edges in \eqref{eq:ring} carries opposing fluxes $1/3$ and $q/3$. Consequently
+\begin{equation}\label{eq:upper}
+ \sig(Q_q)=(1-q)\log(1/q),
+\end{equation}
+proving the upper bound in \eqref{eq:allq}. In particular, the all-dimension infimum is finite. At $q=1$ the $B$ dwell reduces to an exponential of rate one; a reversible two-state chain realizes the target.
+
+\section{Small entropy production forces proximity to hidden equilibrium}
+For an arbitrary realization $Q$, define its stationary reverse and additive reversibilization by
+\begin{equation}\label{eq:R}
+ Q^\dagger=D_\pi^{-1}Q^{\mathsf T}D_\pi,
+ \qquad R=\tfrac12(Q+Q^\dagger).
+\end{equation}
+The generator $R$ is irreducible and reversible for $\pi$. It has the same diagonal entries as $Q$ and therefore the same exit rate from every microscopic state. It is a comparison chain, not an exact realization of the target.
+
+\begin{lemma}[Dimension-free path comparison]\label{lem:path}
+Let $\mathcal P_Q^T$ and $\mathcal P_R^T$ be the stationary microscopic path laws on a time interval of length $T$. Then
+\begin{equation}\label{eq:pathkl}
+ \KL(\mathcal P_Q^T\Vert\mathcal P_R^T)
+ \leq\frac{T}{4}\sig(Q).
+\end{equation}
+If two independent exponential clocks of rate $z>0$ delimit the interval $[-E_-,E_+]$, independently of the chain, the corresponding joint laws of clocks and path satisfy
+\begin{equation}\label{eq:randomkl}
+ \KL(\mathcal P_Q^{\mathrm{clock}}\Vert
+             \mathcal P_R^{\mathrm{clock}})
+ \leq \frac{\sig(Q)}{2z}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The initial stationary laws coincide, and the holding-time terms cancel because the exit rates agree. The standard jump-path likelihood ratio, or its direct product-of-rates calculation, gives
+\[
+ \frac1T\KL(\mathcal P_Q^T\Vert\mathcal P_R^T)
+ =\sum_{i\ne j}F_{ij}\log\frac{2F_{ij}}{F_{ij}+F_{ji}}.
+\]
+For $x,y>0$, the scalar inequality
+\begin{equation}\label{eq:scalar}
+ x\log\frac{2x}{x+y}+y\log\frac{2y}{x+y}
+ \leq\frac14(x-y)\log(x/y)
+\end{equation}
+suffices. To verify it, set $m=(x+y)/2$ and $u=(x-y)/(x+y)$. The right side minus the left, divided by $m$, is
+\[
+ L(u)=-\log(1-u^2)-u\operatorname{artanh}u.
+\]
+This function is even and $L(0)=0$. For $0\leq u<1$,
+\[
+ L'(u)=\frac{u}{1-u^2}-\operatorname{artanh}u\geq0,
+\]
+since the expression on the right vanishes at zero and has derivative $2u^2/(1-u^2)^2$. This proves \eqref{eq:scalar}. If $\sig(Q)=\infty$, the claimed bound is immediate; otherwise all used edges have reverse support, and summing \eqref{eq:scalar} proves \eqref{eq:pathkl}.
+
+Condition on the independently drawn clock lengths and use stationarity to translate the interval to one beginning at zero. The mean total length is $2/z$. Integrating \eqref{eq:pathkl} proves \eqref{eq:randomkl}. No optional-stopping identity or assumption about independent path increments is being used.
+\end{proof}
+
+The factor $1/4$ is a rate-level comparison with the generator $R$. It is not a statement that the path law of $R$ is the arithmetic mixture of the forward and reversed path laws.
+
+\section{Two observable clocks and an equilibrium restriction}\label{sec:clocks}
+Let $B$ be any nontrivial observed block, with stationary probability $p$. Define its stationary persistence function
+\begin{equation}\label{eq:H}
+ H(t)=\Prob\{Y_u=B\ \text{for every }0\leq u\leq t\},\qquad H(0)=p.
+\end{equation}
+Independently draw $E_-,E_+\sim\operatorname{Exp}(z)$. Conditional on $Y_0=B$, define the binary tests
+\begin{align*}
+ U&=\one\{Y_u=B\text{ throughout }[-E_-,0]\},\\
+ V&=\one\{Y_u=B\text{ throughout }[0,E_+]\}.
+\end{align*}
+The tests concern an uninterrupted visit. Seeing $B$ at the two endpoints alone is not sufficient. Hidden jumps within $B$ are allowed. The clocks are an external mathematical sampling device, not a modification of the physical realization.
+
+Stationarity gives equal marginals. Writing $\widehat H(z)=\int_0^\infty e^{-zt}H(t)\,dt$, define
+\begin{equation}\label{eq:ab}
+ a=\Prob(U=1\mid B)=\Prob(V=1\mid B)=\frac{z\widehat H(z)}p,
+ \qquad b=\Prob(U=V=1\mid B)=-\frac{z^2\widehat H'(z)}p.
+\end{equation}
+For the joint event, stationarity gives persistence over an interval of length $E_-+E_+$, whose density is $z^2te^{-zt}$. Thus \eqref{eq:ab} follows directly, without a renewal assumption.
+
+\begin{lemma}[Equilibrium has nonnegative clock covariance]\label{lem:cov}
+For every finite reversible hidden chain with deterministic observation, the two-clock probabilities satisfy $b\geq a^2$.
+\end{lemma}
+\begin{proof}
+Conditional on a present microscopic state $X_0=i$, the stationary past and future are independent. Reversibility makes their conditional laws identical. After including the independent clocks, both binary tests have the same conditional success probability $v_i\in[0,1]$. Hence, conditional on $Y_0=B$,
+\[
+ a=\sum_{i\in B}\frac{\pi_i}{p}v_i,
+ \qquad b=\sum_{i\in B}\frac{\pi_i}{p}v_i^2,
+\]
+and the assertion is the nonnegativity of the variance of $v_i$.
+\end{proof}
+
+\section{A quantitative information-projection lemma}
+Suppose $0<a<1$, $b<a^2$, and set $\delta=a^2-b>0$. The four conditional probabilities, ordered as $00,01,10,11$, are
+\begin{equation}\label{eq:w}
+ w=\big((1-a)^2-\delta,\ a(1-a)+\delta,\ a(1-a)+\delta,\ a^2-\delta\big).
+\end{equation}
+Assume they are positive; boundary cases follow by limits when needed. Let
+\[
+ r_a=\big((1-a)^2,\ a(1-a),\ a(1-a),\ a^2\big),
+ \qquad I(a,b)=\KL(w\Vert r_a).
+\]
+The quantity $I(a,b)$ is the mutual information of the two binary tests.
+
+\begin{lemma}[Nearest positively correlated symmetric binary law]\label{lem:projection}
+For any valid symmetric binary law
+\[
+ r_{u,v}=(1-2u+v,u-v,u-v,v),\qquad v\geq u^2,
+\]
+one has
+\begin{equation}\label{eq:projection}
+ \KL(w\Vert r_{u,v})\geq I(a,b).
+\end{equation}
+Thus the closest law in this class, in the stated direction of relative entropy, is the independent law with the target marginal $a$.
+\end{lemma}
+\begin{proof}
+If a zero coordinate of $r_{u,v}$ has positive $w$ mass, the claim is immediate. Otherwise $-\log x\geq1-x$ gives
+\begin{align*}
+ \KL(w\Vert r_{u,v})-\KL(w\Vert r_a)
+ &\geq1-\sum_j w_j\frac{(r_{u,v})_j}{(r_a)_j}\\
+ &=\frac{\delta\big[(v-u^2)+(u-a)^2\big]}{a^2(1-a)^2}\geq0.
+\end{align*}
+Equality is attained at $u=a,v=a^2$.
+\end{proof}
+
+\begin{lemma}[An exact rational lower bound for the information]\label{lem:cubic}
+For $\delta=a^2-b>0$ as above,
+\begin{equation}\label{eq:cubicI}
+ I(a,b)\geq
+ \frac{\delta^2}{2a^2(1-a)^2}
+ +\frac{(2a-1)^2\delta^3}{6a^4(1-a)^4}.
+\end{equation}
+In particular $I(a,b)\geq8\delta^2$.
+\end{lemma}
+\begin{proof}
+Keep $a$ fixed and replace $\delta$ in \eqref{eq:w} by $x\in[0,\delta]$. Let the resulting information be $I(x)$. Then $I(0)=I'(0)=0$, and
+\[
+ I''(x)=\frac1{(1-a)^2-x}+\frac2{a(1-a)+x}+\frac1{a^2-x}.
+\]
+Use, on their respective domains,
+\[
+ \frac1{r-x}\geq\frac1r+\frac{x}{r^2},
+ \qquad \frac1{r+x}\geq\frac1r-\frac{x}{r^2}.
+\]
+It follows that
+\[
+ I''(x)\geq C_0+C_1x,\quad
+ C_0=\frac1{a^2(1-a)^2},\quad
+ C_1=\frac{(2a-1)^2}{a^4(1-a)^4}.
+\]
+Twice integrating proves \eqref{eq:cubicI}. Finally $a(1-a)\leq1/4$ gives $C_0/2\geq8$.
+\end{proof}
+
+\begin{theorem}[Dimension-free observable dissipation certificate]\label{thm:certificate}
+For any finite stationary hidden Markov realization and the observed two-clock statistics above, if $b<a^2$ then
+\begin{align}
+ \sig(Q)&\geq2zp\,I(a,b),\label{eq:MIbound}\\
+ \sig(Q)&\geq zp\frac{\delta^2}{a^2(1-a)^2}
+ +\frac{zp}{3}\frac{(2a-1)^2\delta^3}{a^4(1-a)^4}.
+ \label{eq:rationalbound}
+\end{align}
+The bound requires no ceiling on hidden dimension, rates, or stationary activity.
+\end{theorem}
+\begin{proof}
+Compare $Q$ with its reversibilization $R$ on the random two-sided interval. Both chains have the same stationary mass $p$ in $B$. Apply data processing to the record consisting of the event $Y_0\in B$ and, on that event, the two tests. The chain rule for relative entropy and Lemma~\ref{lem:path} give
+\[
+ \frac{\sig(Q)}{2z}\geq p\,\KL(w\Vert w_R).
+\]
+Under $R$, Lemma~\ref{lem:cov} gives the required symmetric positively correlated law $w_R$. Lemma~\ref{lem:projection} proves \eqref{eq:MIbound}, and Lemma~\ref{lem:cubic} proves \eqref{eq:rationalbound}. All statements hold for an arbitrary original realization; $R$ need not reproduce the target law.
+\end{proof}
+
+\section{Evaluation for the full family and the specified parameter}
+For an alternating-renewal process, a stationary time falls uniformly along a length-biased visit. Equivalently, the expected fraction of starting times for which an interval of length $t$ lies in a complete $B$ visit of duration $u$ is proportional to $(u-t)_+$. Therefore
+\[
+ H_q(t)=r\int_t^\infty(u-t)f_q(u)\,du,
+ \qquad r=s/3.
+\]
+Using \eqref{eq:f} gives the particularly simple transform
+\begin{equation}\label{eq:Hq}
+ \widehat H_q(z)=\frac{p}{z}-\frac{r(1-\widehat f_q(z))}{z^2}
+ =\frac{2z+3s}{3D_q(z)}.
+\end{equation}
+Substitution in \eqref{eq:ab} yields
+\begin{align}
+ a_q(z)&=\frac{z(2z+3s)}{2D_q(z)},\label{eq:aq}\\
+ b_q(z)&=\frac{z^2(z+q+2)(z+2q+1)}{D_q(z)^2},\label{eq:bq}\\
+ \delta_q(z)&=a_q(z)^2-b_q(z)
+ =\frac{z^2(1-q)^2}{4D_q(z)^2}>0\quad(q\ne1).
+ \label{eq:deltaq}
+\end{align}
+Thus every positive clock rate supplies an observable equilibrium obstruction.
+
+Keeping only the quadratic term of \eqref{eq:rationalbound} gives, for every $z>0$,
+\begin{equation}\label{eq:familybound}
+ V_\infty(P_q)\geq
+ \frac{2z^3(1-q)^4}{3(2z+3s)^2(sz+2c)^2}.
+\end{equation}
+Setting $z=1$ proves the lower bound in \eqref{eq:allq}.
+
+For the concrete target, choose the fixed clock rate $z=6$. Exact arithmetic gives
+\begin{equation}\label{eq:numbers}
+ p=\frac23,\qquad
+ a=\frac{18180}{19861},\qquad
+ b=\frac{329212800}{394459321},\qquad
+ \delta=\frac{1299600}{394459321}.
+\end{equation}
+The four joint probabilities and their independent comparison probabilities share the denominator $394459321=19861^2$:
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+& $00$ & $01$ & $10$ & $11$\\
+\midrule
+Target numerator & 1526161 & 31860180 & 31860180 & 329212800\\
+Independent numerator & 2825761 & 30560580 & 30560580 & 330512400\\
+\bottomrule
+\end{tabular}
+\end{center}
+Equation~\eqref{eq:rationalbound} is now a calculation involving rational numbers only. It gives
+\[
+ \sig(Q)\geq
+ \frac{182774933998705388800}{22434692075028399713067}
+ =0.008146977608939347\ldots.
+\]
+The strict margin over $1/125$ is exactly
+\[
+ \frac{412174674809773886933}{2804336509378549964133375}>0.
+\]
+This proves \eqref{eq:mainconstant} and finishes Theorem~\ref{thm:main}.
+
+Retaining the logarithms in \eqref{eq:MIbound}, rather than the rational underestimate, gives the stronger explicit certificate
+\begin{align*}
+ V_\infty(P_{1/20})\geq \frac{8}{394459321}\bigg[&
+ 1526161\log\frac{1526161}{2825761}
+ +63720360\log\frac{31860180}{30560580}\\
+ &+329212800\log\frac{329212800}{330512400}\bigg]
+ =0.0084471687960995336\ldots.
+\end{align*}
+A rational series with an explicit remainder certifies this numerical enclosure in the supplied verifier. This is a certified lower bound, not the evaluated optimum.
+
+\subsection{A stronger fixed-window certificate}\label{sec:fixed}
+The exponential clocks are not essential. For any $t>0$, use persistence on $[-t,0]$ and $[0,t]$, conditional on $Y_0=B$, and set $a_t=H(t)/p$, $b_t=H(2t)/p$.
+\begin{corollary}[Fixed-window bound]\label{cor:fixed}
+If $b_t<a_t^2$, then
+\[
+\sig(Q)\geq \frac{2p}{t}I(a_t,b_t).
+\]
+The same finite stationary deterministic-observation assumptions apply; renewal is not required.
+\end{corollary}
+\begin{proof}
+The comparison path interval has length $2t$. Lemma~\ref{lem:path} and conditional data processing give $p\KL(w\Vert w_R)\leq t\sig(Q)/2$. Given the current microscopic state, reversible past and future have the same independent persistence law, so Lemmas~\ref{lem:cov} and~\ref{lem:projection} apply without change.
+\end{proof}
+For the ring target, $g(t)=H_q(t)/p=\tfrac12\one^{\mathsf T}e^{tT}\one$. At $q=1/20$ and $t=3/10$, exact rational enclosures certify
+\[
+0.017568198744 < B_{3/10}:=\frac{2p}{t}I(g(t),g(2t)) < 0.017568198745.
+\]
+Thus $V_\infty(P_{1/20})>0.017568198744$, improving the displayed exponential-clock certificate by a factor of about $2.080$. This extension was suggested by the supplied referee audit and incorporated in version 1.1.
+
+For reproducibility, put $x=st$ and $C=I+T/s$, which is substochastic. Uniformisation gives $g(t)=e^{-x}\sum_{k\geq0}(x^k/k!)c_k$, with $c_k=\tfrac12\one^{\mathsf T}C^k\one\in[0,1]$. For both required times, $x\leq1$. Consecutive alternating Taylor sums enclose $e^{-x}$; truncating the positive series at $N=32$ leaves a tail at most
+\[
+\frac{x^{N+1}}{(N+1)!}\left(1-\frac{x}{N+2}\right)^{-1}.
+\]
+For rational $r>0$, $y=(r-1)/(r+1)$ gives $\log r=2\sum_{k=0}^{m-1}y^{2k+1}/(2k+1)+R_m$, with
+$|R_m|\leq2|y|^{2m+1}/((2m+1)(1-y^2))$.
+Rational interval operations certify the enclosure, including negative logarithmic terms (the supplied audit uses $m=32$ and the release implementation uses $m=40$). The upper enclosure is for this certificate, not for $V_\infty$. The physical bracket is instead
+\[
+0.017568198744<V_\infty(P_{1/20})\leq(19/20)\log20\approx2.84595.
+\]
+An explicit certificate, the best certificate in a selected observation family, and the unknown physical optimum are different quantities. The gap to the ring competitor is not an error estimate for the lower certificate.
+
+\subsection{Bounded observational uncertainty}\label{sec:robust}
+\begin{corollary}[A conservative uncertainty-box certificate]\label{cor:robust}
+Suppose the true stationary statistics obey $p\geq p_0>0$, $a\geq a_0\geq0$, $b\leq b_1$, and $\eta=a_0^2-b_1>0$. Then exponential clocks of rate $z$ give $\sig(Q)\geq16zp_0\eta^2$. For fixed windows of length $t$ on each side, $\sig(Q)\geq16p_0\eta^2/t$.
+\end{corollary}
+\begin{proof}
+Every valid law in the box has $a^2-b\geq\eta$. Use $I(a,b)\geq8(a^2-b)^2$ in Theorem~\ref{thm:certificate} or Corollary~\ref{cor:fixed}; boundary cells follow by continuity.
+\end{proof}
+For the $q=1/20,z=6$ witness, allow absolute errors at most $\varepsilon=1/10000$ in each of $p,a,b$. The choices $p_0=2/3-\varepsilon$, $a_0=18180/19861-\varepsilon$, $b_1=329212800/394459321+\varepsilon$ give $\eta>0$ and a strictly positive rational floor, verified by the extension checker. This is a deterministic sensitivity statement. A confidence claim additionally needs simultaneous coverage for this box, justified for the observation scheme and temporal dependence; no such statistical procedure or sample-size guarantee is asserted here. A box with $\eta\leq0$ supplies no positive certificate by this test, not evidence of equilibrium.
+
+\section{A broader zero-cost dichotomy}\label{sec:dichotomy}
+The positive floor is not restricted to this example. A complete dwell distribution is called \emph{hyperexponential} when its density is a finite positive mixture of exponential densities, $\sum_j\alpha_j\lambda_j e^{-\lambda_jt}$, with $\alpha_j>0$, $\sum_j\alpha_j=1$, and $\lambda_j>0$.
+
+\begin{theorem}[No unattained zero limit for finite-realizable alternating renewal]\label{thm:dichotomy}
+Let $P$ be a stationary ergodic two-label alternating-renewal law that has a finite irreducible CTMC realization with deterministic observation. The following are equivalent:
+\begin{enumerate}[label=(\roman*),itemsep=0pt]
+\item $V_\infty(P)=0$;
+\item both complete dwell distributions are hyperexponential;
+\item $P$ has a finite reversible exact realization.
+\end{enumerate}
+Thus growing architecture cannot approach zero entropy production without a finite zero-cost optimizer anywhere in this class.
+\end{theorem}
+\begin{proof}
+The implication (iii)$\Rightarrow$(i) is immediate. To prove (i)$\Rightarrow$(ii), choose exact realizations $Q_k$ with $\sig(Q_k)\to0$, and replace each by $R_k=(Q_k+Q_k^\dagger)/2$. For either observed block $B$, the stationary mass is the same fixed $p$. By \eqref{eq:pathkl} and Pinsker's inequality,
+\begin{equation}\label{eq:closure}
+ |H_{R_k}(t)-H_P(t)|\leq\sqrt{t\sig(Q_k)/8}.
+\end{equation}
+The killed generator $(R_k)_{BB}$ is self-adjoint in $L^2(\pi|_B)$ and strictly negative definite. Here $\pi|_B$ is the unnormalised restricted measure, of mass $p$, not the conditional probability measure. Its spectral theorem gives
+\[
+ H_{R_k}(t)=\langle\one,e^{t(R_k)_{BB}}\one\rangle_{\pi|_B}
+ =\int_{[0,\infty)}e^{-\lambda t}\,\mu_k(d\lambda),
+ \qquad \mu_k([0,\infty))=p,
+\]
+with a finite positive discrete measure $\mu_k$.
+
+For completeness, the limit retains a positive spectral measure. Compactify $\lambda\in[0,\infty)$ by the coordinate $x=e^{-\lambda}\in(0,1]$. A subsequence of the corresponding measures on $[0,1]$ converges weakly. For each $t>0$, $x^t$ is continuous, so \eqref{eq:closure} identifies $H_P(t)$ with its limiting integral. Continuity $H_P(t)\to p$ as $t\downarrow0$ excludes mass at $x=0$. Also $H_P(t)\to0$ as $t\to\infty$ excludes mass at $x=1$. Hence
+\[
+ H_P(t)=\int_{(0,\infty)}e^{-\lambda t}\,\mu(d\lambda)
+\]
+for a positive finite measure of mass $p$.
+
+Now use finite realizability of the fixed target, not of the approximating reversible sequence. For any one finite target realization, $H_P(t)=\pi_Be^{tQ_{BB}}\one$, so $H_P$ satisfies a nonzero constant-coefficient differential equation $P_0(\partial_t)H_P=0$, by Cayley--Hamilton. Differentiating the integral at $t>0$ is legitimate because polynomial factors times $e^{-\lambda t}$ are bounded. Thus
+\[
+ \int P_0(-\lambda)e^{-\lambda t}\,\mu(d\lambda)=0\qquad(t>0).
+\]
+The finite signed measure $e^{-\lambda}P_0(-\lambda)\mu(d\lambda)$ has zero Laplace transform. Uniqueness of that transform implies it is zero. Therefore $\mu$ is supported on the finitely many positive roots of $P_0(-\lambda)$, and $H_P$ is a finite positive mixture of exponentials.
+
+For a stationary complete dwell density $f_B$ and entrance intensity $r_B$, the visit-length identity is $H_P''(t)=r_B f_B(t)$. If $H_P(t)=\sum_j c_j e^{-\lambda_jt}$, the density weights are $\alpha_j=c_j\lambda_j/r_B>0$: indeed $f_B(t)=\sum_j\alpha_j\lambda_j e^{-\lambda_jt}$ and $\sum_j\alpha_j=-H_P'(0)/r_B=1$. Apply the same argument to $A$ to prove (ii).
+
+Finally suppose (ii) holds, with densities $\sum_i\alpha_i\lambda_i e^{-\lambda_it}$ in $A$ and $\sum_j\beta_j\mu_j e^{-\mu_jt}$ in $B$. Introduce states $A_i,B_j$ and rates
+\[
+ Q_{A_iB_j}=\lambda_i\beta_j,\qquad
+ Q_{B_jA_i}=\mu_j\alpha_i,
+\]
+with no within-block jumps. Set
+\[
+ r=\left(\sum_i\alpha_i/\lambda_i+\sum_j\beta_j/\mu_j\right)^{-1},
+ \quad \pi_{A_i}=r\alpha_i/\lambda_i,
+ \quad \pi_{B_j}=r\beta_j/\mu_j.
+\]
+Every cross-edge has flux $r\alpha_i\beta_j$ in both directions. The chain is irreducible and reversible. Each exit chooses the next block's phase independently from its specified mixture weights. This gives the exact independent alternating-renewal law, proving (iii).
+\end{proof}
+
+The renewal hypothesis is used for the sufficiency construction. For a general observed process, hyperexponential marginal dwell laws alone do not determine the complete path law and are not asserted to guarantee a reversible realization.
+
+\subsection{Beyond the elementary variance obstruction}\label{sec:beyondvariance}
+Let the $A$ dwell be exponential of rate one and let the $B$ dwell be the equal mixture of the $q=1/4$ ring dwell and an exponential of rate $1/100$. Its density is
+\[
+f_B(t)=\frac{81}{160}e^{-3t/4}-\frac{49}{160}e^{-7t/4}+\frac1{200}e^{-t/100}.
+\]
+An exact finite irreducible realization, with the first state labelled $A$ and the other three labelled $B$, is
+\[
+Q=\begin{pmatrix}
+-1&2/5&1/10&1/2\\
+1/4&-5/4&1&0\\
+1&1/4&-5/4&0\\
+1/100&0&0&-1/100
+\end{pmatrix}.
+\]
+The unique $A$ state resets independent visits. All used edges have reverse support, so its dissipation is finite. Direct integration gives $\E T_B=254/5$ and $\E T_B^2=70016/7$, hence
+\[
+\operatorname{CV}_B^2=\frac{324697}{112903}>1.
+\]
+The elementary necessary equilibrium condition $\operatorname{CV}^2\geq1$ therefore does not exclude this law. Nevertheless its Laplace transform has the negative residue $-49/160$ at $-7/4$. Uniqueness of the Laplace transform excludes any positive exponential-mixture representation. Theorem~\ref{thm:dichotomy} implies $0<V_\infty(P)<\infty$. This example demonstrates the classification's reach; it does not assign a numerical optimum or assert that the two-test certificate detects every nonhyperexponential law.
+
+\section{Interpretation, verification, and claim limits}
+A stationary alternating-renewal observation can be time-reversal symmetric even when every compatible Markov mechanism dissipates. The obstruction here is not an observed directional current. It is a restriction imposed by conditional independence and reversibility of the microscopic mechanism. Mixing equilibrium hidden states produces nonnegative past--future correlation for the two persistence tests, whereas $P_q$ has the strictly negative covariance \eqref{eq:deltaq}. The rate comparison \eqref{eq:randomkl} converts that separation into a uniform thermodynamic cost.
+
+The inherited and additional implications should be distinguished. Tu~\cite{tu} connects nonequilibrium switching to dwell-time restrictions. Skinner and Dunkel~\cite{skinner}, Supplement Section II, equations S6--S10 (A6--A10 in the HTML rendering), derive the equilibrium positive exponential-mixture restriction and credit an earlier antecedent. Their waiting-time programme includes hidden-model optimization and a variance--dissipation curve. The $q=1/20$ target already has $\operatorname{CV}_B^2=481/842<1$, so recognizing it as nonequilibrium is not the new conclusion. Ehrich~\cite{ehrich} studies fitting hidden mechanisms for discrete-time partial observations and discusses enlarging the hidden network. Nitzan, Ghosal, and Bisker~\cite{nitzan} optimize transition and waiting-time statistics with a hypothesized hidden topology. Neither numerical convergence in explored dimensions nor fixed-dimension exclusion is used here as a proof of a positive unrestricted infimum.
+
+\begin{center}\small
+\begin{tabular}{p{.25\linewidth}p{.32\linewidth}p{.33\linewidth}}
+\toprule
+Statement & Observation/domain & Status here\\\midrule
+Equilibrium spectral restriction & Dwell laws of a finite reversible chain & Inherited, explicitly credited\\
+Hidden-model optimization & Statistics matched within explored hidden mechanisms & Prior methodology, not a new invention\\
+Dimension-free certificate & Bounded persistence statistics; any finite hidden dimension & Explicit analytic separation and certified constants\\
+Zero-cost closure & Exact finite-realizable alternating-renewal path law; unbounded approximating dimension & Vanishing cost forces the spectral class and a finite reversible realization\\\bottomrule
+\end{tabular}
+\end{center}
+Additive reversibilization also appears in Aznagulov's finite-resolution comparison~\cite{spectral}; its use is not itself claimed new. The present argument addresses the zero-limit possibility of~\cite{aznagulov} without relying on that preprint's compactification claims. The source comparison is bounded, not an exhaustive priority certification or a claim that our certificate dominates every earlier estimator.
+
+The evidence directory contains four complementary checks. A standard-library verifier evaluates the explicit certificate with exact fractions, including its strict margin above $1/125$ and a rigorous logarithmic enclosure. A second exact checker encloses the fixed-window certificate, verifies the high-variance example and the uncertainty-box substitution, and rejects six invalid inputs or false claims. A SymPy verifier checks thirteen all-parameter rational identities. A separately implemented floating-point diagnostic tests 180 random hidden chains, 1000 information-projection instances, and 32 ring-family cases, with explicit controls for one-way edges and equilibrium. These calculations do not replace the analytic proofs; they check algebra, constants, and failure-prone implementation details. No claim of external independent review or proof-assistant formalization is made.
+
+The precise resolved claim is $V_\infty(P_{1/20})\ne0$, with a positive dimension-independent lower bound. The exact value of $V_\infty$, whether a finite architecture attains this positive value, and the best hidden architecture remain distinct optimization questions. Nothing in the argument limits physical models with odd time-reversal variables, nonstationary driving, or observation rules outside the stated model class.
+
+\paragraph{Availability and disclosure.} Source, exact checks, diagnostics and a point-by-point revision record accompany this anonymous unrefereed candidate. The supplied review and audit informed revision; AI-assisted revision and internal checking are not external peer review. The stronger fixed-window corollary is credited to that audit. No human research contribution, external funding, institutional affiliation or conflict-of-interest declaration is inferred from the publisher account; those details were not supplied. This theoretical study involves no human participants or private empirical data. Original prose and data are CC0; original code is MIT; third-party material retains its terms.
+
+\begin{thebibliography}{9}
+\bibitem{aznagulov}
+Aznagulov, M. (2026). \emph{Thermodynamic realizability of hidden Markov processes: Attainment, observable certificates, and the price of architecture}. arXiv:2609.14623v1. \url{https://arxiv.org/abs/2609.14623}. Target definitions in Sections 2 and 8.5; zero-limit question in Section 6.
+\bibitem{skinner}
+Skinner, D. J., \& Dunkel, J. (2021). Estimating entropy production from waiting time distributions. \emph{Physical Review Letters, 127}, 198101. \url{https://doi.org/10.1103/PhysRevLett.127.198101}.
+\bibitem{ehrich}
+Ehrich, J. (2021). Tightest bound on hidden entropy production from partially observed dynamics. \emph{Journal of Statistical Mechanics: Theory and Experiment, 2021}, 083214. \url{https://doi.org/10.1088/1742-5468/ac150e}.
+\bibitem{tu}
+Tu, Y. (2008). The nonequilibrium mechanism for ultrasensitivity in a biological switch: Sensing by Maxwell's demons. \emph{Proceedings of the National Academy of Sciences, 105}, 11737--11741. \url{https://doi.org/10.1073/pnas.0804641105}.
+\bibitem{nitzan}
+Nitzan, E., Ghosal, A., \& Bisker, G. (2023). Universal bounds on entropy production inferred from observed statistics. \emph{Physical Review Research, 5}, 043251. \url{https://doi.org/10.1103/PhysRevResearch.5.043251}.
+\bibitem{spectral}
+Aznagulov, M. (2026). \emph{The spectral cost of detecting nonequilibrium at finite temporal resolution}. arXiv:2609.37205v1. \url{https://arxiv.org/abs/2609.37205}.
+\end{thebibliography}
+\end{document}

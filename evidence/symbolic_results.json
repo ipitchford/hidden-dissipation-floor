@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "sympy_version": "1.14.0",
+  "checks": {
+    "row sums": "PASS",
+    "stationarity": "PASS",
+    "exact B dwell transform": "PASS",
+    "mean B dwell": "PASS",
+    "second B dwell moment": "PASS",
+    "persistence from renewal identity": "PASS",
+    "persistence from killed generator": "PASS",
+    "clock b formula": "PASS",
+    "negative covariance": "PASS",
+    "closed quadratic floor": "PASS",
+    "information projection supporting inequality": "PASS",
+    "cubic C0": "PASS",
+    "cubic C1": "PASS"
+  },
+  "scope": "Polynomial/rational identities only; analytic inequalities are proved in manuscript."
+}
